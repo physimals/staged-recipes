@@ -1,0 +1,41 @@
+{% set name = "quantiphyse-cvr" %}
+{% set version = "0.0.2.post4" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/quantiphyse-cvr-{{ version }}.tar.gz
+  sha256: 9639796e29e3fa1ebdcf2fb4d9d351f5316851c84b79178c64d75cf84bad512c
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - numpy
+    - python
+    - quantiphyse-fabber
+    - vaby
+    - vaby_avb
+    - vaby_models_cvr
+
+test:
+  imports:
+    - quantiphyse_cvr
+
+about:
+  home: https://quantiphyse.readthedocs.io/
+  summary: Quantiphyse plugin for cerebrovascular reactivity data
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - mcraig-ibme
