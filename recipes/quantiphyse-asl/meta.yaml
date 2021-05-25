@@ -1,0 +1,46 @@
+{% set name = "quantiphyse-asl" %}
+{% set version = "0.9.3" %}
+
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/quantiphyse-asl-{{ version }}.tar.gz
+  sha256: c35d7d04a927343689c983b6738809631db1005d316edbf54dec62b13259d646
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python >=3.6
+  run:
+    - oxasl
+    - oxasl_enable
+    - oxasl_mp
+    - oxasl_ve
+    - pyfab
+    - python >=3.6
+
+test:
+  imports:
+    - quantiphyse_basil
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://quantiphyse.readthedocs.io/
+  summary: Quantiphyse plugin for ASL-MRI data
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - mcraig-ibme
